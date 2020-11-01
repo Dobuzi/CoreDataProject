@@ -13,10 +13,13 @@ struct ContentView: View {
     
     @FetchRequest(entity: Country.entity(), sortDescriptors: []) var countries: FetchedResults<Country>
     
-    @State private var lastNameFilter = "A"
+    @State private var candyNameFilter = "M"
 
     var body: some View {
         VStack {
+            FilteredList(filterKey: "name", filterCondition: Condition.beginsWith, filterValue: candyNameFilter) { (candy: Candy) in
+                Text("\(candy.wrappedName) @\(candy.origin?.shortName ?? "Unknown")")
+            }
             List {
                 ForEach(countries, id: \.self) { country in
                     Section(header: Text(country.wrappedFullName)) {

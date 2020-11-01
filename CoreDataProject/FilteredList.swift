@@ -20,8 +20,36 @@ struct FilteredList<T: NSManagedObject, Content: View>: View {
         }
     }
     
-    init(filterKey: String, filterValue: String, @ViewBuilder content: @escaping (T) -> Content) {
-        fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [], predicate: NSPredicate(format: "%K BEGINSWITH %@", filterKey, filterValue))
+    init(filterKey: String, filterCondition: Condition, filterValue: String, @ViewBuilder content: @escaping (T) -> Content) {
+        var condition: String {
+            switch filterCondition {
+            case .beginsWith:
+                return "BEGINSWITH"
+            case .beginsWithC:
+                return "BEGINSWITH[c]"
+            case .equals:
+                return "=="
+            case .bigger:
+                return ">"
+            case .smaller:
+                return "<"
+            case .like:
+                return "like"
+            case .between:
+                return "between"
+            case .inArray:
+                return "in"
+            }
+
+        }
+        self.fetchRequest = FetchRequest<T>(entity: T.entity(), sortDescriptors: [NSSortDescriptor(key: filterKey, ascending: true)], predicate: NSPredicate(format: "\(filterKey) \(condition) '\(filterValue)'"))
         self.content = content
     }
+}
+
+enum Condition {
+    case beginsWith, beginsWithC
+    case equals, bigger, smaller
+    case like, between, inArray
+    
 }
