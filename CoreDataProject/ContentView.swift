@@ -10,68 +10,69 @@ import CoreData
 
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
+    
+    @State private var lastNameFilter = "A"
 
     @FetchRequest(
-        sortDescriptors: [NSSortDescriptor(keyPath: \Item.timestamp, ascending: true)],
+        entity: Wizard.entity(),
+        sortDescriptors: [],
         animation: .default)
-    private var items: FetchedResults<Item>
-
+    private var wizards: FetchedResults<Wizard>
+    
+    @FetchRequest(
+        entity: Ship.entity(),
+        sortDescriptors: [],
+        predicate: NSPredicate(format: "NOT name BEGINSWITH[c] %@", "e"),
+        animation: .default
+    ) private var ships: FetchedResults<Ship>
+    
     var body: some View {
-        List {
-            ForEach(items) { item in
-                Text("Item at \(item.timestamp!, formatter: itemFormatter)")
+        return VStack {
+            List {
+                ForEach(ships, id: \.self) { ship in
+                    Text(ship.name ?? "Unknown")
+                }
             }
-            .onDelete(perform: deleteItems)
-        }
-        .toolbar {
-            #if os(iOS)
-            EditButton()
-            #endif
-
-            Button(action: addItem) {
-                Label("Add Item", systemImage: "plus")
-            }
-        }
-    }
-
-    private func addItem() {
-        withAnimation {
-            let newItem = Item(context: viewContext)
-            newItem.timestamp = Date()
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
-            }
-        }
-    }
-
-    private func deleteItems(offsets: IndexSet) {
-        withAnimation {
-            offsets.map { items[$0] }.forEach(viewContext.delete)
-
-            do {
-                try viewContext.save()
-            } catch {
-                // Replace this implementation with code to handle the error appropriately.
-                // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                let nsError = error as NSError
-                fatalError("Unresolved error \(nsError), \(nsError.userInfo)")
+            Spacer()
+            Button(action: {
+                let ship1 = Ship(context: self.viewContext)
+                ship1.name = "Enterprise"
+                ship1.universe = "Star Trek"
+                
+                let ship2 = Ship(context: self.viewContext)
+                ship2.name = "Defiant"
+                ship2.universe = "Star Trek"
+                
+                let ship3 = Ship(context: self.viewContext)
+                ship3.name = "Millennium Falcon"
+                ship3.universe = "Star Wars"
+                
+                let ship4 = Ship(context: self.viewContext)
+                ship4.name = "Executor"
+                ship4.universe = "Star Wars"
+            }, label: {
+                Text("Add")
+            })
+            HStack {
+                Button("Clear") {
+                    deleteShips(at: IndexSet(0..<ships.count))
+                }
+                Button("Save") {
+                    try? self.viewContext.save()
+                }
             }
         }
     }
+    
+    func deleteShips(at offsets: IndexSet) {
+        for offset in offsets {
+            let ship = ships[offset]
+            viewContext.delete(ship)
+        }
+        try? viewContext.save()
+    }
+
 }
-
-private let itemFormatter: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateStyle = .short
-    formatter.timeStyle = .medium
-    return formatter
-}()
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {

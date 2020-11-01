@@ -6,11 +6,11 @@
 //
 
 import SwiftUI
+import CoreData
 
 @main
 struct CoreDataProjectApp: App {
     let persistenceController = PersistenceController.shared
-
     var body: some Scene {
         WindowGroup {
             ContentView()

@@ -13,6 +13,10 @@
 		4D269D5C254CF41F006B745A /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4D269D5B254CF41F006B745A /* Preview Assets.xcassets */; };
 		4D269D5E254CF41F006B745A /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D269D5D254CF41F006B745A /* Persistence.swift */; };
 		4D269D61254CF41F006B745A /* CoreDataProject.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4D269D5F254CF41F006B745A /* CoreDataProject.xcdatamodeld */; };
+		4D9D3EC3254D1205003F7FE2 /* Movie+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D3EC1254D1205003F7FE2 /* Movie+CoreDataClass.swift */; };
+		4D9D3EC4254D1205003F7FE2 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D3EC2254D1205003F7FE2 /* Movie+CoreDataProperties.swift */; };
+		4DCDC51D254E6B69008F5C60 /* Singer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCDC51B254E6B69008F5C60 /* Singer+CoreDataClass.swift */; };
+		4DCDC51E254E6B69008F5C60 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCDC51C254E6B69008F5C60 /* Singer+CoreDataProperties.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +28,10 @@
 		4D269D5D254CF41F006B745A /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
 		4D269D60254CF41F006B745A /* CoreDataProject.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataProject.xcdatamodel; sourceTree = "<group>"; };
 		4D269D62254CF41F006B745A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4D9D3EC1254D1205003F7FE2 /* Movie+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4D9D3EC2254D1205003F7FE2 /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4DCDC51B254E6B69008F5C60 /* Singer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataClass.swift"; sourceTree = "<group>"; };
+		4DCDC51C254E6B69008F5C60 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +64,10 @@
 		4D269D53254CF41F006B745A /* CoreDataProject */ = {
 			isa = PBXGroup;
 			children = (
+				4DCDC51B254E6B69008F5C60 /* Singer+CoreDataClass.swift */,
+				4DCDC51C254E6B69008F5C60 /* Singer+CoreDataProperties.swift */,
+				4D9D3EC1254D1205003F7FE2 /* Movie+CoreDataClass.swift */,
+				4D9D3EC2254D1205003F7FE2 /* Movie+CoreDataProperties.swift */,
 				4D269D54254CF41F006B745A /* CoreDataProjectApp.swift */,
 				4D269D56254CF41F006B745A /* ContentView.swift */,
 				4D269D58254CF41F006B745A /* Assets.xcassets */,
@@ -144,9 +156,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4DCDC51D254E6B69008F5C60 /* Singer+CoreDataClass.swift in Sources */,
 				4D269D5E254CF41F006B745A /* Persistence.swift in Sources */,
 				4D269D57254CF41F006B745A /* ContentView.swift in Sources */,
 				4D269D61254CF41F006B745A /* CoreDataProject.xcdatamodeld in Sources */,
+				4D9D3EC3254D1205003F7FE2 /* Movie+CoreDataClass.swift in Sources */,
+				4DCDC51E254E6B69008F5C60 /* Singer+CoreDataProperties.swift in Sources */,
+				4D9D3EC4254D1205003F7FE2 /* Movie+CoreDataProperties.swift in Sources */,
 				4D269D55254CF41F006B745A /* CoreDataProjectApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
