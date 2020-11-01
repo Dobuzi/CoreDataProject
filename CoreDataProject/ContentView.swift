@@ -11,38 +11,50 @@ import CoreData
 struct ContentView: View {
     @Environment(\.managedObjectContext) private var viewContext
     
+    @FetchRequest(entity: Country.entity(), sortDescriptors: []) var countries: FetchedResults<Country>
+    
     @State private var lastNameFilter = "A"
 
     var body: some View {
         VStack {
-            FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
-                Text("\(singer.wrappedFirstName) \(singer.wrappedFirstName)")
+            List {
+                ForEach(countries, id: \.self) { country in
+                    Section(header: Text(country.wrappedFullName)) {
+                        ForEach(country.candyArray, id: \.self) { candy in
+                            Text(candy.wrappedName)
+                        }
+                    }
+                }
             }
             Button(action: {
-                let taylor = Singer(context: self.viewContext)
-                taylor.firstName = "Taylor"
-                taylor.lastName = "Swift"
-                
-                let ed = Singer(context: self.viewContext)
-                ed.firstName = "Ed"
-                ed.lastName = "Sheeran"
-                
-                let adele = Singer(context: self.viewContext)
-                adele.firstName = "Adele"
-                adele.lastName = "Adkins"
+                let candy1 = Candy(context: self.viewContext)
+                candy1.name = "Mars"
+                candy1.origin = Country(context: self.viewContext)
+                candy1.origin?.shortName = "UK"
+                candy1.origin?.fullName = "United Kingdom"
+
+                let candy2 = Candy(context: self.viewContext)
+                candy2.name = "KitKat"
+                candy2.origin = Country(context: self.viewContext)
+                candy2.origin?.shortName = "UK"
+                candy2.origin?.fullName = "United Kingdom"
+
+                let candy3 = Candy(context: self.viewContext)
+                candy3.name = "Twix"
+                candy3.origin = Country(context: self.viewContext)
+                candy3.origin?.shortName = "UK"
+                candy3.origin?.fullName = "United Kingdom"
+
+                let candy4 = Candy(context: self.viewContext)
+                candy4.name = "Toblerone"
+                candy4.origin = Country(context: self.viewContext)
+                candy4.origin?.shortName = "CH"
+                candy4.origin?.fullName = "Switzerland"
                 
                 try? self.viewContext.save()
             }, label: {
                 Text("Add")
             })
-            
-            Button("Show A") {
-                self.lastNameFilter = "A"
-            }
-            
-            Button("Show S") {
-                self.lastNameFilter = "S"
-            }
         }
     }
 }
