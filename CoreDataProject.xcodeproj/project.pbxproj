@@ -17,6 +17,7 @@
 		4D9D3EC4254D1205003F7FE2 /* Movie+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4D9D3EC2254D1205003F7FE2 /* Movie+CoreDataProperties.swift */; };
 		4DCDC51D254E6B69008F5C60 /* Singer+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCDC51B254E6B69008F5C60 /* Singer+CoreDataClass.swift */; };
 		4DCDC51E254E6B69008F5C60 /* Singer+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCDC51C254E6B69008F5C60 /* Singer+CoreDataProperties.swift */; };
+		4DCDC521254E6CD4008F5C60 /* FilteredList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4DCDC520254E6CD4008F5C60 /* FilteredList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -32,6 +33,7 @@
 		4D9D3EC2254D1205003F7FE2 /* Movie+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Movie+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		4DCDC51B254E6B69008F5C60 /* Singer+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataClass.swift"; sourceTree = "<group>"; };
 		4DCDC51C254E6B69008F5C60 /* Singer+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Singer+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		4DCDC520254E6CD4008F5C60 /* FilteredList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilteredList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +77,7 @@
 				4D269D62254CF41F006B745A /* Info.plist */,
 				4D269D5F254CF41F006B745A /* CoreDataProject.xcdatamodeld */,
 				4D269D5A254CF41F006B745A /* Preview Content */,
+				4DCDC520254E6CD4008F5C60 /* FilteredList.swift */,
 			);
 			path = CoreDataProject;
 			sourceTree = "<group>";
@@ -158,6 +161,7 @@
 			files = (
 				4DCDC51D254E6B69008F5C60 /* Singer+CoreDataClass.swift in Sources */,
 				4D269D5E254CF41F006B745A /* Persistence.swift in Sources */,
+				4DCDC521254E6CD4008F5C60 /* FilteredList.swift in Sources */,
 				4D269D57254CF41F006B745A /* ContentView.swift in Sources */,
 				4D269D61254CF41F006B745A /* CoreDataProject.xcdatamodeld in Sources */,
 				4D9D3EC3254D1205003F7FE2 /* Movie+CoreDataClass.swift in Sources */,

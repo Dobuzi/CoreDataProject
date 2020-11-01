@@ -13,65 +13,38 @@ struct ContentView: View {
     
     @State private var lastNameFilter = "A"
 
-    @FetchRequest(
-        entity: Wizard.entity(),
-        sortDescriptors: [],
-        animation: .default)
-    private var wizards: FetchedResults<Wizard>
-    
-    @FetchRequest(
-        entity: Ship.entity(),
-        sortDescriptors: [],
-        predicate: NSPredicate(format: "NOT name BEGINSWITH[c] %@", "e"),
-        animation: .default
-    ) private var ships: FetchedResults<Ship>
-    
     var body: some View {
-        return VStack {
-            List {
-                ForEach(ships, id: \.self) { ship in
-                    Text(ship.name ?? "Unknown")
-                }
+        VStack {
+            FilteredList(filterKey: "lastName", filterValue: lastNameFilter) { (singer: Singer) in
+                Text("\(singer.wrappedFirstName) \(singer.wrappedFirstName)")
             }
-            Spacer()
             Button(action: {
-                let ship1 = Ship(context: self.viewContext)
-                ship1.name = "Enterprise"
-                ship1.universe = "Star Trek"
+                let taylor = Singer(context: self.viewContext)
+                taylor.firstName = "Taylor"
+                taylor.lastName = "Swift"
                 
-                let ship2 = Ship(context: self.viewContext)
-                ship2.name = "Defiant"
-                ship2.universe = "Star Trek"
+                let ed = Singer(context: self.viewContext)
+                ed.firstName = "Ed"
+                ed.lastName = "Sheeran"
                 
-                let ship3 = Ship(context: self.viewContext)
-                ship3.name = "Millennium Falcon"
-                ship3.universe = "Star Wars"
+                let adele = Singer(context: self.viewContext)
+                adele.firstName = "Adele"
+                adele.lastName = "Adkins"
                 
-                let ship4 = Ship(context: self.viewContext)
-                ship4.name = "Executor"
-                ship4.universe = "Star Wars"
+                try? self.viewContext.save()
             }, label: {
                 Text("Add")
             })
-            HStack {
-                Button("Clear") {
-                    deleteShips(at: IndexSet(0..<ships.count))
-                }
-                Button("Save") {
-                    try? self.viewContext.save()
-                }
+            
+            Button("Show A") {
+                self.lastNameFilter = "A"
+            }
+            
+            Button("Show S") {
+                self.lastNameFilter = "S"
             }
         }
     }
-    
-    func deleteShips(at offsets: IndexSet) {
-        for offset in offsets {
-            let ship = ships[offset]
-            viewContext.delete(ship)
-        }
-        try? viewContext.save()
-    }
-
 }
 
 struct ContentView_Previews: PreviewProvider {
